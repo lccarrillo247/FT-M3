@@ -2,23 +2,38 @@ const fs = require("fs");
 const utils = require("../utils/request");
 const process = require("process");
 
-function pwd() {}
+function pwd(print, args) {
+    // print(__dirname);
+    print(process.cwd())
+};
 
-function date() {}
+function date(print, args) {
+    print(Date())
+};
 
-function echo() {}
+function echo(print, args) {
+    print(args)
+};
 
-function ls() {}
+function ls(print, args) {
 
-function cat() {}
+}
 
-function head() {}
+function cat(print, args) {}
 
-function tail() {}
+function head(print, args) {}
 
-function curl() {}
+function tail(print, args) {}
 
-module.exports = {};
+function curl(print, args) {}
 
-
-// Jijijiji
+module.exports = {
+    pwd,
+    date,
+    echo,
+    ls,
+    cat,
+    head,
+    tail,
+    curl
+};
