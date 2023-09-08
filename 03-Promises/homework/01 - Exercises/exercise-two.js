@@ -19,15 +19,26 @@ args.forEach(function (arg) {
 
 function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
-  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
+  // exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
+  // exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
 
   // promise version
   // Tu código acá:
+
+  const promiseOne = exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt")
+  .then((stanza1) => exerciseUtils.blue(stanza1))
+
+  const promiseTwo = exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  .then((stanza2) => exerciseUtils.blue(stanza2))
+
+  Promise
+  .all([promiseOne, promiseTwo])
+  .finally(()=> console.log('done'));
+
 }
 
 function problemB() {
@@ -47,6 +58,12 @@ function problemB() {
 
   // promise version
   // Tu código acá:
+  filenames.forEach((filename) => {
+    exerciseUtils.promisifiedReadFile(filename)
+    .then((stanza) => exerciseUtils.blue(stanza))
+    .catch((error) => exerciseUtils.magenta(new Error(error)))
+    .finally(()=> console.log('done'));
+  })
 }
 
 // EJERCICIO EXTRA
