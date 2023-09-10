@@ -67,10 +67,10 @@ server.put("/posts/:id", (req, res) => {
     const {title, contents} = req.body;
     if (id && title && contents) {
         const specificPublication = publications.filter( // También se puede con .find
-            (pub) => pub.id === id
+            (pub) => pub.id === Number(id)
         );
         if (specificPublication.length) {
-            specificPublication.title = title;
+            specificPublication.title = title; // specificPublication = {...specificPublication, title, contents}
             specificPublication.contents = contents;
             res.status(200).json(specificPublication);
         } else {
@@ -88,12 +88,12 @@ server.put("/posts/:id", (req, res) => {
 server.delete("/posts/:id", (req, res) => {
     const {id} = req.params
     if (id) {
-        const deletePublication = publications.filter(
-            (pub) => pub.id === id
+        let deletePublication = publications.filter(
+            (pub) => pub.id === Number(id)
         )
         if (deletePublication.length) {
-            let publications = publications.filter(
-                (pub) => pub.id !== id
+            publications = publications.filter(
+                (pub) => pub.id !== Number(id)
             )
             res.status(200).json({
                 success: true
