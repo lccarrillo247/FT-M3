@@ -34,11 +34,30 @@ return array.sort();
 };
 
 const levelFour = (num) => {
-    if (num === 1729 || num === 1 || num === 81 || num === 1458) {
-        return true
-    } else {
-        return false
+
+    const numString = num.toString();
+
+    let suma = 0;
+
+    for (let i = 0; i < numString.length; i++) {
+        suma += Number(numString[i]);
     }
+
+    let reverso = suma.toString().split('').reverse().join('');
+
+    if (suma * reverso === num) {
+        return true;
+    } else {
+        return false;
+    }
+
+
+    // if (num === 1729 || num === 1 || num === 81 || num === 1458) {
+    //     return true
+    // } else {
+    //     return false
+    // }
+    // min 34
 };
 
 module.exports = { levelOne, levelTwo, levelThree, levelFour };
